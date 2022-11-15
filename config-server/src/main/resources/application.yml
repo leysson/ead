@@ -1,0 +1,29 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: ead-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/leysson/ead-config-server-repo
+          default-label: main
+          username: leysson
+          password: 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
+
+ead:
+  config-server:
+    username: configserver
+    password: 'ead123cs'
+  service-registry:
+    username: serviceregistry
+    password: 'ead123sr'
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: 'http://${ead.service-registry.username}:${ead.service-registry.password}@localhost:8761/eureka'
+  instance:
+    hostname: localhost
